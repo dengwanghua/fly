@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+  <select id="hasUser" parameterType="com.pojo.User" resultType="com.pojo.User">
+			select * from user where username=#{username}
+  </select>
+  
+  <insert id="registerUser" parameterType="com.pojo.User">
+  		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into user(username,password,email,telephone,birthday) values (#{username},#{password},#{email},#{telephone},#{birthday})
+  </insert>
+  
+  <select id="loginUser" parameterType="com.pojo.User" resultType="com.pojo.User">
+			select * from  user where username=#{username} and password=#{password}
+  </select>
+  
+  <select id="userInfo" parameterType="com.pojo.User" resultType="com.pojo.User">
+			select * from  user where username=#{username}
+  </select>
+  
+  <update id="updatePassword" parameterType="com.pojo.User">
+			update user set password=#{password} where username=#{username}
+  </update>
+</mapper>

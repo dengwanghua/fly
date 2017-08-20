@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.FlyMapper" >
+	<select id="flyWhole" resultType="com.pojo.Fly">
+    	select * from air_whole order by cnt desc
+  	</select>
+  	<select id="flyAllName" resultType="String">
+    	select sale_nbr from air_whole order by sale_nbr
+  	</select>
+  	<select id="flyRelationship" parameterType="String" resultType="java.util.HashMap">
+  		select buy_nbr,cnt,round from sale_buy_relationship  where sale_nbr=#{flyname} order by cnt desc;
+  	</select>
+  	
+  	<select id="wholeday" resultType="java.util.HashMap">
+  		select day_id,flycnt,agentsalecnt,agentbuycnt,travellercnt from whole_day order by day_id;
+  	</select>
+  	
+  	<select id="flyDay" parameterType="String" resultType="java.util.HashMap">
+  		select day_id,cnt,round from air_day where sale_nbr=#{flyname} order by day_id;
+  	</select>
+  	
+  	<select id="dayFly" parameterType="int" resultType="java.util.HashMap">
+  		select sale_nbr,cnt,round from air_day where day_id=#{day} order by cnt desc;
+  	</select>
+  	
+  	<select id="flyActive"  resultType="java.util.HashMap">
+  		select airname,active from air_active order by airname;
+  	</select>
+  	<select id="flyMarket" parameterType="String"  resultType="java.util.HashMap">
+  		select day_id,cnt_rate from air_day where sale_nbr=#{flyname} order by day_id;
+  	</select>
+  	
+  	<select id="flyPredict" parameterType="String"  resultType="java.util.HashMap">
+  		select day_id,cnt_sum,round_sum from predict_sale where sale_nbr=#{flyname} order by day_id;
+  	</select>
+  	
+  	<select id="flyOriginal" parameterType="String"  resultType="java.util.HashMap">
+  		select day_id,cnt,round from air_day where sale_nbr=#{flyname} and day_id between 81 and 91  order by day_id;
+  	</select>
+</mapper>

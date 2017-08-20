@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>注册</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/gloab.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/register.js"></script>
+</head>
+<body class="bgf4">
+<div class="login-box f-mt10 f-pb50">
+	<div class="main bgf">    
+    	<div class="reg-box-pan display-inline">  
+        	
+        	<div class="reg-box" id="verifyCheck" style="margin-top:20px;">
+            	<div class="part1">                	
+                    
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>原密码：</span>    
+                        <div class="f-fl item-ifo">
+                            <input type="password" id="oldpassword" maxlength="20" class="txt03 f-r3 required" tabindex="3" style="ime-mode:disabled;" onpaste="return  false" autocomplete="off"  /> 
+                            <span class="ie8 icon-close close hide"></span>                           
+                            <label class="icon-sucessfill blank hide"></label>
+                            <label class="focus" id="oldfocus" style="color:red"></label>
+                            <label class="focus valid"></label>
+                        </div>
+                    </div>
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>新的密码：</span>    
+                        <div class="f-fl item-ifo">
+                            <input type="password" id="newpassword" maxlength="20" class="txt03 f-r3 required" tabindex="3" style="ime-mode:disabled;" onpaste="return  false" autocomplete="off"  /> 
+                            <span class="ie8 icon-close close hide" style="right:55px"></span>
+                            <span class="showpwd" data-eye="password"></span>                        
+                            <label class="icon-sucessfill blank hide"></label>
+                            <label class="focus" id="newfocus" style="color:red"></label>
+                            <label class="focus valid"></label>
+                            <span class="clearfix"></span>
+                            <label class="strength">
+                            	<span class="f-fl f-size12">安全程度：</span>
+                            	<b><i>弱</i><i>中</i><i>强</i></b>
+                            </label>    
+                        </div>
+                    </div>
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>确认密码：</span>    
+                        <div class="f-fl item-ifo">
+                            <input type="password" maxlength="20" class="txt03 f-r3 required" tabindex="4" style="ime-mode:disabled;" onpaste="return  false" autocomplete="off"   id="repassword" />
+                            <span class="ie8 icon-close close hide" style="right:55px"></span>
+                            <span class="showpwd" data-eye="rePassword"></span>
+                            <label class="icon-sucessfill blank hide"></label>
+                            <label class="focus" id="refocus" style="color:red"></label> 
+                            <label class="focus valid"></label>                          
+                        </div>
+                    </div>
+                    
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl">&nbsp;</span>    
+                        <div class="f-fl item-ifo">
+                           <a href="javascript:;" class="btn btn-blue f-r3" id="btn_part1">保存</a>                         
+                        </div>
+                    </div> 
+                </div>
+                
+                
+                         
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>	
+	
+	//第一页的确定按钮
+	$("#btn_part1").click(function(){	
+		$("#oldfocus").text("");
+		$("#newfocus").text("");
+		$("#refocus").text("");
+		var validateoldpw=$("#oldpassword").val();
+		var validatenewpw=$("#newpassword").val();
+		var validaterepw=$("#repassword").val();
+		if(validateoldpw==null||validateoldpw==""||validatenewpw==null||validatenewpw==""||validaterepw==null||validaterepw==""){
+			if(validateoldpw==null||validateoldpw==""){
+				$("#oldfocus").text("密码不能为空!");
+			}
+			if(validatenewpw==null||validatenewpw==""){
+				$("#newfocus").text("密码不能为空!");
+			}
+			if(validaterepw==null||validaterepw==""){
+				$("#refocus").text("密码不能为空!");
+			}
+			return;
+		}
+		else{
+			if(validatenewpw!=validaterepw){
+				$("#refocus").text("两次输入的密码不同!");
+			}else{
+				var params={"oldpw":validateoldpw,"newpw":validatenewpw};
+				$.ajax({
+					type:"post",
+					url:"/fly/updateinfo.action",
+					data:params,
+					dataType:"json",
+					contentType:"application/x-www-form-urlencoded;charset=utf-8 ",
+					success:function(data){
+						var stateinfo = JSON.parse(data.state);
+						if(stateinfo=="0"){
+							alert("您还没有登录，请先登录！");
+							window.parent.location.href="/fly/login.html";
+						}
+						if(stateinfo=="1"){
+							alert("旧密码不正确，请重新输入！");
+						}
+						if(stateinfo=="2"){
+							alert("修改失败，请重新修改！");
+						}
+						if(stateinfo=="3"){
+							alert("密码修改成功！");
+						}
+					}
+					
+				});
+			}
+		}
+		
+			
+			
+		
+	});
+function showoutc(){$(".m-sPopBg,.m-sPopCon").show();}
+function closeClause(){
+	$(".m-sPopBg,.m-sPopCon").hide();		
+}
+</script>
+<script type="text/javascript"></script>
+</body>
+</html>

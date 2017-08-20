@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>民航机票代理市场系统</title>
+<meta name="keywords"  content="设置关键词..." />
+<meta name="description" content="设置描述..." />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="javascript/jquery.js"></script>
+<script src="javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="javascript/plug-ins/echarts.min.js"></script>
+<script src="javascript/plug-ins/layerUi/layer.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="javascript/plug-ins/pagination.js"></script>
+<script src="javascript/public.js"></script>
+
+
+<!-- 多选框 -->
+<link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css" />
+<link href="css/jquery-ui.css" rel="stylesheet" />
+<script src="javascript/jquery-ui.min.js"></script>
+	
+<!-- ／多选框 -->
+</head>
+
+
+<body>
+<div class="main-wrap">
+	<div class="side-nav">
+		<div class="side-logo">
+			<div class="logo">
+				<span class="logo-ico">
+					<i class="i-l-1"></i>
+					<i class="i-l-2"></i>
+					<i class="i-l-3"></i>
+				</span>
+				<strong>民航机票代理市场系统</strong>
+			</div>
+		</div>
+		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+      <ul>
+      <li>
+        <dl>
+          <dt>
+            <i class="icon-dashboard"></i>销售基本信息<i class="icon-angle-right"></i>
+          </dt>
+          <dd>
+              <a href="hanginf.html">航空公司</a>
+          </dd>
+          <dd>
+              <a href="daiinf.html">代理人</a>
+          </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <i class="icon-columns"></i>销售关系<i class="icon-angle-right"></i>
+            </dt>
+            <dd>
+              <a href="flydiagram.html">航空公司</a>
+            </dd>
+            <dd>
+              <a href="peoplediagram.html">代理人</a>
+            </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <i class="icon-inbox"></i>销售趋势<i class="icon-angle-right"></i>
+            </dt>
+            <dd>
+              <a href="sumchange.html">总体销售趋势</a>
+            </dd>
+            <dd>
+              <a href="hangchange.html">航空公司</a>
+            </dd>
+            <dd>
+              <a href="daichange.html">代理人</a>
+            </dd>
+            
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <i class="icon-twitter"></i>每日销售情况<i class="icon-angle-right"></i>
+            </dt>
+            <dd>
+              <a href="everyhang.html">航空公司</a>
+            </dd>
+            <dd>
+              <a href="everydai.html">代理人</a>
+            </dd>
+            
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <i class="icon-book"></i>市场地位<i class="icon-angle-right"></i>
+            </dt>
+            <dd>
+              <a href="Sales_ability.html">销售能力</a>
+            </dd>
+            <dd>
+              <a href="Cash_flow_force.html">资金周转力</a>
+            </dd>
+            <dd>
+              <a href="active.html">活跃度</a>
+            </dd>
+            <dd>
+              <a href="The_market_share.html">市场占有量</a>
+            </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <i class="icon-star"></i>预测<i class="icon-angle-right"></i>
+            </dt>
+            <dd>
+              <a href="hangpredict.html">航空公司</a>
+            </dd>
+            <dd>
+              <a href="daipredict.html">代理人</a>
+            </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <i class="icon-user"></i>个人中心<i class="icon-angle-right"></i>
+            </dt>
+            <dd>
+              <a href="peocenter.html">个人基本信息</a>
+            </dd>
+            <dd>
+              <a href="changeps.html">密码修改</a>
+            </dd>
+            
+          </dl>
+        </li>
+      </ul> 
+    </nav>
+	</div>
+	<div class="content-wrap">
+		<header class="top-hd">
+			<div class="hd-lt">
+				<a class="icon-reorder"></a>
+			</div>
+			<div class="hd-rt">
+				<ul>
+					
+					<li>
+						<a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+					</li>
+				</ul>
+			</div>
+		</header>	
+<main class="main-cont content mCustomScrollbar">
+     
+
+
+
+ <div class="page-wrap">
+  <section class="page-hd">
+
+<div class="box box11">
+    <div class="top-box">
+      <i class="icon-trophy"></i>代理人介绍
+    </div>
+    <div class="main-box" style="position: relative;">
+    <div id="main33" style="width: 170px;height:170px;margin-left: 50px;margin-top: 10px;">
+<script type="text/javascript">
+		var resultlist;
+		$(function(){
+			$.ajax({
+				type:"post",
+				url:"agentwhole.action",
+				data:null,
+				dataType:"json",
+				contentType:"application/json;charset=utf-8",
+				success:function(data){
+					var datainfo = JSON.parse(data.data);
+					resultlist=datainfo.infolist;
+					var myChart = echarts.init(document.getElementById('main33'));
+					  var dataStyle = {
+					      normal: {
+					          label: {
+					              show: false
+					          },
+					          labelLine: {
+					              show: false
+					          },
+					          shadowBlur: 30,
+					          shadowColor: 'rgb(40, 40, 40)',
+					      }
+					  };
+					  var placeHolderStyle = {
+					      normal: {
+					          color: '#68838B',//未完成的圆环的颜色
+					          label: {
+					              show: false
+					          },
+					          labelLine: {
+					              show: false
+					          }
+					      },
+					      emphasis: {
+					          color: '#5D478B'//未完成的圆环的颜色
+					      }
+					  };
+					   var option = {
+					      title: {
+					    	  text:'',
+					          text: (datainfo.count).toString(),
+					          x: 'center',
+					          y: 'center',
+					          textStyle: {
+					              fontWeight: 'normal',
+					              color: "#191970",
+					              fontSize: 30
+					          }
+					      },
+					      backgroundColor: '#fff',
+					      color: ['#8E8E38', '#8E8E38', '#fff'],
+					      tooltip: {
+					          show: false,
+					          formatter: "{a} <br/>{b} : {c} ({d}%)"
+					      },
+					      legend: {
+					          show: false,
+					          itemGap: 12,
+					          data: ['01', '02']
+					      },
+					      toolbox: {
+					          show: false,
+					          feature: {
+					              mark: {
+					                  show: true
+					              },
+					              dataView: {
+					                  show: true,
+					                  readOnly: false
+					              },
+					              restore: {
+					                  show: true
+					              },
+					              saveAsImage: {
+					                  show: true
+					              }
+					          }
+					      },
+					      series: [{
+					              name: 'Line 1',
+					              type: 'pie',
+					              clockWise: false,
+					              radius: [48, 63],
+					              itemStyle: dataStyle,
+					              hoverAnimation: false,
+					              data: [{
+					                      value: 75,
+					                      name: '01'
+					                  }, {
+					                      value: 25,
+					                      name: 'invisible',
+					                      itemStyle: placeHolderStyle
+					                  }
+					              ]
+					          }, {
+					              name: 'Line 2',
+					              type: 'pie',
+					              animation: false,
+					              clockWise: false,
+					              radius: [220, 218],
+					              itemStyle: dataStyle,
+					              hoverAnimation: false,
+					              tooltip: {
+					                  show: false
+					              },
+					              data: [{
+					                      value: 100,
+					                      name: '02',
+					                      itemStyle: {
+					                          emphasis: {
+					                              color: '#9B30FF'
+					                          }
+					                      }
+					                  }, {
+					                      value: 0,
+					                      name: 'invisible',
+					                      itemStyle: placeHolderStyle
+					                  }
+					              ]
+					          },
+					      ]
+					  };
+					  myChart.setOption(option);
+					  
+					  var sale1=datainfo.saletopfive[0];
+					  var sale2=datainfo.saletopfive[1];
+					  var sale3=datainfo.saletopfive[2];
+					  var sale4=datainfo.saletopfive[3];
+					  var sale5=datainfo.saletopfive[4];
+					  var sale6=datainfo.saletopfive[5];
+					  
+					  var buy1=datainfo.buytopfive[0];
+					  var buy2=datainfo.buytopfive[1];
+					  var buy3=datainfo.buytopfive[2];
+					  var buy4=datainfo.buytopfive[3];
+					  var buy5=datainfo.buytopfive[4];
+					  var buy6=datainfo.buytopfive[5];
+					  
+					  var myChart1 = echarts.init(document.getElementById('main8'));
+					  var option1 = {
+					    title : {
+					        text: '',
+					        subtext: '',
+					        x:'center'
+					    },
+					    tooltip : {
+					        trigger: 'item',
+					        formatter: "{a} <br/>{b} : {c} ({d}%)"
+					    },
+					    legend: {
+					        x : 'left',
+					        y : 'top',
+					        orient: 'vertical',
+					        data:[buy1["name"],buy2["name"],buy3["name"],buy4["name"],buy5["name"],buy6["name"]]
+					    },
+					    toolbox: {
+					        show : true,
+					        feature : {
+					            mark : {show: true},
+					            dataView : {show: true, readOnly: false},
+					            magicType : {
+					                show: true,
+					                type: ['pie', 'funnel']
+					            },
+					            restore : {show: true},
+					            saveAsImage : {show: true}
+					        }
+					    },
+					    calculable : true,
+					    series : [
+					        {
+					            name:'面积模式',
+					            type:'pie',
+					            radius : [20, 100],
+					            center : ['60%', '53%'],
+					            roseType : 'area',
+					            data:datainfo.buytopfive
+					        }
+					    ]
+					};
+
+					myChart1.setOption(option1);
+					
+					
+					var myChart2 = echarts.init(document.getElementById('main7'));
+					  var option2 = {
+					    title : {
+					        text: '',
+					        subtext: '',
+					        x:'center'
+					    },
+					    tooltip : {
+					        trigger: 'item',
+					        formatter: "{a} <br/>{b} : {c} ({d}%)"
+					    },
+					    legend: {
+					        x : 'left',
+					        y : 'top',
+					        orient: 'vertical',
+					        data:[sale1["name"],sale2["name"],sale3["name"],sale4["name"],sale5["name"],sale6["name"]]
+					    },
+					    toolbox: {
+					        show : true,
+					        feature : {
+					            mark : {show: true},
+					            dataView : {show: true, readOnly: false},
+					            magicType : {
+					                show: true,
+					                type: ['pie', 'funnel']
+					            },
+					            restore : {show: true},
+					            saveAsImage : {show: true}
+					        }
+					    },
+					    calculable : true,
+					    series : [
+					        {
+					            name:'面积模式',
+					            type:'pie',
+					            radius : [20, 100],
+					            center : ['60%', '53%'],
+					            roseType : 'area',
+					            data:datainfo.saletopfive
+					        }
+					    ]
+					};
+
+					myChart2.setOption(option2);
+					
+					var totalpage=parseInt((datainfo.count+9)/10);
+					$("#totalPage").text(totalpage.toString());
+					$("#currentPage").text("1");
+					infolist(datainfo.infolist);
+					
+					var myChart3 = echarts.init(document.getElementById('main11'));
+					var option3 = {
+				        title:{
+				         text:'代理人购票详情',
+				         margin:20,
+				         top:10,
+				         left:'center',
+				            textStyle: {
+				            color: '#000',
+				            fontStyle: 'normal',
+				            fontFamily: '微软雅黑',
+				            fontSize: 20,
+				            margin:40,
+				        }
+				     },
+				    tooltip: {
+				        trigger: 'axis',
+				        axisPointer: {type: 'cross'}
+				    },
+				     dataZoom:[
+				                    {   show:true,
+				                        height:25,
+				                        xAxisIndex: [0],
+				                        bottom:10,
+				                        type: 'slider',
+				                        startValue: 0,
+				                        endValue: 10,
+				                        handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+				                        handleSize:'110%',
+				                        handleStyle: {
+				                            color:'#9B4E4E'
+				                        }
+				                     },
+				                     {
+				                         show:true,
+				                         type: 'inside',
+				                         height:15,
+				                         startValue: 0,
+				                         endValue:10
+				                     }
+				                     ,
+				                     {
+				                         show: true,
+				                         yAxisIndex: [0,1],
+				                         filterMode: 'empty',
+				                         width: 30,
+				                         height: '70%',
+				                         showDataShadow: false,
+				                         right: '3%'
+				                     }
+				                    ],
+				    toolbox: {
+				        feature: {
+				            dataView: {show: true, readOnly: false},
+				            magicType: {show: true, type: ['line', 'bar']},
+				            restore: {show: true},
+				            saveAsImage: {show: true}
+				        }
+				    },
+				    grid: {
+			            right: '15%',
+			            top:80
+			           
+			        },
+				    legend: {
+				        left:20,
+				        top:10,
+				        data:['购票数量','购票金额']
+				    },
+				    xAxis: [
+				        {
+				            type: 'category',
+				            data: datainfo.agentlist
+				        }
+				    ],
+				    yAxis: [
+				        {
+				            type: 'value',
+				            name: '数量(单位:张)',
+				            min: 0,
+				            max: 15000000,
+				            interval: 3000000,
+				            axisLabel: {
+				                formatter: '{value}'
+				            }
+				        },
+				        {
+				            type: 'value',
+				            name: '金额(单位:万元)',
+				            min: 0,
+				            max: 700000.0,
+				            interval: 140000.0,
+				            axisLabel: {
+				                formatter: '{value}'
+				            }
+				        }
+				    ],
+				    series: [
+				        {
+				            name:'购票数量',
+				            type:'bar',
+				            data:datainfo.buycntlist
+				        },
+				        {
+				            name:'购票金额',
+				            type:'bar',
+				            yAxisIndex: 1,
+				            data:datainfo.buyroundlist
+				        }
+				    ]
+				};
+				myChart3.setOption(option3);
+				
+				var myChart4 = echarts.init(document.getElementById('main2'));
+				var option4 = {
+			        title:{
+			         text:'代理人售票详情',
+			         margin:20,
+			         top:10,
+			         left:'center',
+			            textStyle: {
+			            color: '#000',
+			            fontStyle: 'normal',
+			            fontFamily: '微软雅黑',
+			            fontSize: 20,
+			            margin:40,
+			        }
+			     },
+			    tooltip: {
+			        trigger: 'axis',
+			        axisPointer: {type: 'cross'}
+			    },
+			    grid: {
+		            right: '15%',
+		            top:80
+		           
+		        },
+			     dataZoom:[
+			                    {   show:true,
+			                        height:25,
+			                        xAxisIndex: [0],
+			                        bottom:10,
+			                        type: 'slider',
+			                        startValue: 1,
+			                        endValue: 10,
+			                        handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+			                        handleSize:'110%',
+			                        handleStyle: {
+			                            color:'#9B4E4E'
+			                        }
+			                     },
+			                     {
+			                         show:true,
+			                         type: 'inside',
+			                         height:15,
+			                         startValue: 1,
+			                         endValue:10
+			                     }
+			                     ,
+			                     {
+			                         show: true,
+			                         yAxisIndex: [0,1],
+			                         filterMode: 'empty',
+			                         width: 30,
+			                         height: '70%',
+			                         showDataShadow: false,
+			                         right: '3%'
+			                     }
+			                    ],
+			    toolbox: {
+			        feature: {
+			            dataView: {show: true, readOnly: false},
+			            magicType: {show: true, type: ['line', 'bar']},
+			            restore: {show: true},
+			            saveAsImage: {show: true}
+			        }
+			    },
+			    legend: {
+			        left:20,
+			        top:10,
+			        data:['售票数量','售票金额']
+			    },
+			    xAxis: [
+			        {
+			            type: 'category',
+			            data: datainfo.agentlist
+			        }
+			    ],
+			    yAxis: [
+			        {
+			            type: 'value',
+			            name: '数量(单位:张)',
+			            min: 0,
+			            max: 15000000,
+			            interval: 3000000,
+			            axisLabel: {
+			                formatter: '{value}'
+			            }
+			        },
+			        {
+			            type: 'value',
+			            name: '金额(单位:万元)',
+			            min: 0,
+			            max: 700000.0,
+			            interval: 140000.0,
+			            axisLabel: {
+			                formatter: '{value}'
+			            }
+			        }
+			    ],
+			    series: [
+			        {
+			            name:'售票数量',
+			            type:'bar',
+			            data:datainfo.salecntlist
+			        },
+			        {
+			            name:'售票金额',
+			            type:'bar',
+			            yAxisIndex: 1,
+			            data:datainfo.saleroundlist
+			        }
+			    ]
+			};
+			myChart4.setOption(option4);
+				}
+			});
+		});
+		function infolist(info){
+			$("#datalist").html("");
+			var start=(parseInt($("#currentPage").text())-1)*10;
+			var datastring="";
+			var number=info.length-start;
+			number=number<10?number:10;
+			for(var i=0;i<number;i++){
+				var data=info[start+i];
+				var content="";
+				if(i%2==0){//奇数
+					content="<tr style='background:#EDEDED;height: 25px;'>";
+				}else{
+					content="<tr style='background:white;height: 25px;'>";
+				}
+				content+="<td>"+(start+i+1)+"</td>"+"<td>"+data.proxy+"</td>"+"<td>"+data.buy_cnt+"</td>"+"<td>"+(data.buy_round)/10000+"</td>"+"<td>"+data.sale_cnt+"</td>"+"<td>"+(data.sale_round)/10000+"</td>";
+				content+="</tr>";
+				datastring+=content;
+			}
+			
+			$("#datalist").html(datastring);
+		}
+		function firstPage(){
+			$("#currentPage").text("1");
+			infolist(resultlist);
+			
+		}
+		function lastPage(){
+			$("#currentPage").text(parseInt($("#totalPage").text()));
+			infolist(resultlist);
+			
+		}
+		
+		function prevPage(){
+			var page=parseInt($("#currentPage").text());
+			if(page==1){
+				alert("已经是第一页！");
+			}else{
+				$("#currentPage").text((page-1).toString());
+			}
+			infolist(resultlist);
+		}
+		function nextPage(){
+			var page=parseInt($("#currentPage").text());
+			if(page==parseInt($("#totalPage").text())){
+				alert("已经是最后一页！");
+			}else{
+				$("#currentPage").text((page+1).toString());
+			}
+			infolist(resultlist);
+		}
+		function selectPage(){
+			var selectPage=parseInt($("#selectPage").val());
+			var totalPage=parseInt($("#totalPage").text());
+			if(selectPage>=1&&selectPage<=totalPage){
+				$("#currentPage").text(selectPage.toString());
+				infolist(resultlist);
+			}else{
+				alert("选择页数有误，请重新选择！");
+			}
+		}
+</script>
+    </div>
+     <p style="position: absolute;bottom: -20px;left: 100px;">代理人数量</p>
+      
+
+
+
+    <div style="position: absolute;left: 250px;top: 50px;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本系统包括多家代理人，代理人的主要业务是购买机票与销售机票，对于购买机票，代理人不仅可以向航空公司购票，同时也可以在不同代理人之间进行购票；对于售票，代理人不仅可以向旅客进行售票，同时也可以在不同代理人之间进行售票。本系统主要是对代理人的售票量、售票金额、购票量以及购票金额进行分析。
+    </div>
+
+
+    </div>
+</div>
+<div style="clear: both;"></div>
+
+ 
+	<div class="box box1">
+		<div class="top-box">
+			<i class="icon-trophy"></i>购票数量前五的代理人
+		</div>
+		<div class="main-box">
+			<div id="main8" style="width: 100%;height: 300px;"></div>
+		</div>
+	</div>
+
+	<div class="box box2">
+		<div class="top-box">
+			<i class="icon-trophy"></i>售票数量前五的代理人
+		</div>
+		<div class="main-box">
+			<div id="main7" style="width: 100%;height: 300px;"></div>
+		</div>
+	</div>
+
+	<div style="clear: both;"></div>
+<!--  <div class="mainbox">
+         <div id="main4" class="fbox"></div>
+  </div>  -->
+  
+	<div class="box box3">
+		<div class="top-box"><i class="icon-trophy"></i>代理人销售详情</div>
+		<div class="main-box">
+			<table style="width: 100%;position: relative;top: 0px;">
+	<thead>
+        <tr style="background-color:white; color: black;height: 30px;">
+                            <td>序号</td>
+                            <td id="month1">名称</td>
+                            <td id="month2">购票数量(单位:张)</td>
+                            <td id="month3">购票金额(单位:万元)</td>
+                            <td id="month2">售票数量(单位:张)</td>
+                            <td id="month3">售票金额(单位:万元)</td>
+                            </tr>
+    </thead>
+    <tbody id="datalist">
+        
+    </tbody>
+	</table>
+	</div>
+	<div class="pageBox">
+	    <div class="page">
+		      <ul class="pageMenu clearfix" style="width:560px">
+		        <li class="firstPage" id="firstPage" onclick="firstPage()">首页</li>
+		        <li class="prevPage" id="prevPage" onclick="prevPage()"> < 上一页 </li>
+		        <div class="pageObj ">
+		          
+		        </div>
+		        <li class="nextPage" id="nextPage" onclick="nextPage()"> 下一页 > </li>
+		        <li class="lastPage" id="lastPage" onclick="lastPage()">尾页</li>
+		        <li class="last" style="font-size: 14px;">
+		          共<span id="currentPage"></span>/<span class="totalPage" id="totalPage"></span>页，跳转至 <input type="number" class="keuInput" id="selectPage" value="1" style="width:45px">
+		          <button type="button" class="btnSure" onclick="selectPage()">确定</button>
+		        </li>
+		      </ul>
+	    </div>
+    </div>
+	</div>
+<div style="clear: both;"></div>
+	<div>
+	<div class="box6">
+		<div class="top-box"><i class="icon-trophy"></i>代理人购票详情</div>
+		<div class="main-box" style="background-color: white;">
+			<div id="main11" style="width: 100%;height: 500px;"></div>
+		</div>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+
+	<div class="box6">
+	<div class="top-box"><i class="icon-trophy"></i>代理人售票详情</div>
+		<div class="main-box" style="background-color: white;">
+			<div id="main2" style="width: 100%;height: 500px;"></div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	</section>
+</div>
+
+</main>
+<footer class="btm-ft">
+	<p class="clear">
+		<span class="fl">©Copyright 2017 <a href="#"  target="_blank">北京工业大学信息学部（原软件学院）</a></span>
+	</p>
+</footer>
+</div>
+</div>
+</body>
+</html>

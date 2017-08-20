@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="echarts.min.js"></script>
+<title>动态折线图</title>
+</head>
+<body>
+<div id="main" style="width: 100%;height: 500px;"></div>
+<script type="text/javascript">
+	var myChart = echarts.init(document.getElementById('main'));
+	var option = {
+        title:{
+         text:'总体票量变化图表',
+         margin:20,
+         top:10,
+         left:'center',
+            textStyle: {
+            color: '#000',
+            fontStyle: 'normal',
+            fontFamily: '微软雅黑',
+            fontSize: 20,
+            margin:40,
+        }
+     },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {type: 'cross'}
+    },
+     dataZoom:[
+                    {   show:true,
+                        height:25,
+                        xAxisIndex: [0],
+                        bottom:10,
+                        type: 'slider',
+                        start: 1,
+                        end: 35,
+                        handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+                        handleSize:'110%',
+                        handleStyle: {
+                            color:'#9B4E4E'
+                        }
+                     },
+                     {
+                         show:true,
+                         type: 'inside',
+                         height:15,
+                         start: 1,
+                         end:35
+                     }
+                    ],
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        left:20,
+        top:10,
+        data:['蒸发量','降水量','平均温度']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: '水量',
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+                formatter: '{value} ml'
+            }
+        },
+        {
+            type: 'value',
+            name: '温度',
+            min: 0,
+            max: 25,
+            interval: 5,
+            axisLabel: {
+                formatter: '{value} °C'
+            }
+        }
+    ],
+    series: [
+        {
+            name:'蒸发量',
+            type:'bar',
+            data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+        },
+        {
+            name:'降水量',
+            type:'bar',
+            data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+        },
+        {
+            name:'平均温度',
+            type:'bar',
+            yAxisIndex: 1,
+            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+        }
+    ]
+};
+myChart.setOption(option);
+</script>
+</body>
+</html>

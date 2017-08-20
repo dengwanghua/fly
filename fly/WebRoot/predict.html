@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>民航售票管理系统</title>
+<meta name="keywords"  content="设置关键词..." />
+<meta name="description" content="设置描述..." />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="javascript/jquery.js"></script>
+<script src="javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="javascript/plug-ins/echarts.min.js"></script>
+<script src="javascript/plug-ins/layerUi/layer.js"></script>
+<script src="editor/ueditor.config.js"></script>
+<script src="editor/ueditor.all.js"></script>
+<script src="javascript/plug-ins/pagination.js"></script>
+<script src="javascript/public.js"></script>
+<script type="text/javascript" src="line/echarts.min.js"></script>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="jQuerySelect/lib/css/htools.select.skin.css?v=1.0">
+
+</head>
+<body>
+<div class="main-wrap">
+	<div class="side-nav">
+		<div class="side-logo">
+			<div class="logo">
+				<span class="logo-ico">
+					<i class="i-l-1"></i>
+					<i class="i-l-2"></i>
+					<i class="i-l-3"></i>
+				</span>
+				<strong>民航机票代理市场系统</strong>
+			</div>
+		</div>
+		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+			<ul>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-dashboard"></i>售票基本信息<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+							<a href="hanginf.html">航空公司</a>
+					</dd>
+					<dd>
+							<a href="daiinf.html">代理商</a>
+					</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-columns"></i>销售网络关系<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="flydiagram.html">航空公司</a>
+						</dd>
+						<dd>
+							<a href="peoplediagram.html">代理商</a>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-inbox"></i>销售趋势<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="sumchange.html">总体变化</a>
+						</dd>
+						<dd>
+							<a href="hangchange.html">航空公司</a>
+						</dd>
+						<dd>
+							<a href="daichange.html">代理商</a>
+						</dd>
+						
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-twitter"></i>每日售票情况<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="everyhang.html">航空公司</a>
+						</dd>
+						<dd>
+							<a href="everydai.html">代理商</a>
+						</dd>
+						
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-book"></i>市场地位变化<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="Sales_ability.html">销售能力</a>
+						</dd>
+						<dd>
+							<a href="Cash_flow_force.html">资金周转力</a>
+						</dd>
+						<dd>
+							<a href="active.html">活跃度</a>
+						</dd>
+						<dd>
+							<a href="The_market_share.html">市场占有量</a>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-star"></i>预测<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="hangpredict.html">航空公司</a>
+						</dd>
+						<dd>
+							<a href="daipredict.html">代理商</a>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-user"></i>个人中心<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="peocenter.html">个人基本信息</a>
+						</dd>
+						<dd>
+							<a href="changeps.html">密码修改</a>
+						</dd>
+						
+					</dl>
+				</li>
+			</ul>	
+		</nav>
+	</div>
+	<div class="content-wrap">
+		<header class="top-hd">
+			<div class="hd-lt">
+				<a class="icon-reorder"></a>
+			</div>
+			<div class="hd-rt">
+				<ul>
+					
+					<li>
+						<a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<main class="main-cont content mCustomScrollbar">
+			<!--开始::内容-->
+			
+<div class="page-wrap">
+	<section class="page-hd">
+		<div >
+		<div class="_htools-selec-box">
+		<label>请选择代理商：</label>
+		        <label>
+		            <select id="myselect">
+		                <option value="0" selected="">代理商名称</option>
+		                <option value="1">代理商1</option>
+		                <option value="2">代理商2</option>
+		                <option value="3">代理商3</option>
+		                <option value="4">代理商4</option>
+		            </select>
+		        </label>
+		        <button id="get" style="width: 60px;height: 30px;">
+		            查询
+		        </button>
+		</div>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="jQuerySelect/lib/js/jquery.htools.select.js"></script>
+	<script type="text/javascript">
+		var $select = $("#select");
+	        var $myselect = $("#myselect");
+	        $myselect.goSelectInput({
+	            height: 30,
+	            width: 250
+	        });        
+	</script>
+		</div>
+
+
+
+<div>
+	
+<div id="main" style="width: 96%;height: 480px;margin-left: 20px;margin-top: 50px;"></div>
+<div id="main2" style="width: 96%;height: 480px;margin-left: 20px;margin-top: 50px;"></div>
+</div>
+
+
+
+<script type="text/javascript">
+	var myChart = echarts.init(document.getElementById('main'));
+	var option = {
+    backgroundColor: '#F2F2F2',
+    title: {
+            text: '代理商销售情况折线图',
+            textStyle: {
+            color: 'rgb(56,70,82)'
+
+        	},
+            left:'center',
+            top:10,
+            fontsize:'48',
+            margin:40
+        },
+       dataZoom:[
+	    {   show:true,
+	        height:25,
+	        xAxisIndex: [0],
+	        bottom:25,
+	        type: 'slider',
+	        start: 1,
+	        end: 35,
+	        handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+	        handleSize:'110%',
+	        handleStyle: {
+	            color:'rgb(56,70,82)'
+	        }
+	     },
+	     {
+	         show:true,
+	         type: 'inside',
+	         height:15,
+	         start: 1,
+	         end:35
+	     }
+	    ],
+
+ // title:{
+ //         text:'航空公司售票变化图表',
+ //         margin:20,
+ //         top:10,
+ //         left:'center',
+ //         	textStyle: {
+	// 		color: '#fff',
+	// 		fontStyle: 'normal',
+	// 		fontFamily: '微软雅黑',
+	// 		fontSize: 20,
+	// 		margin:40,
+	// 	}
+
+
+
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['代理商卖出票量'],
+        top: 'bottom',
+        textStyle: {
+            color: 'rgb(56,70,82)'
+        },
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+       
+        containLabel: true
+    },
+    toolbox: {
+    	
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['04/02', '04/03', '04/04', '04/05', '04/06', '04/07', '04/08'],
+        axisLine: {
+            lineStyle: {
+                color: 'rgb(56,70,82)'
+            }
+        }
+    },
+    yAxis: {
+        axisLine: {
+            lineStyle: {
+                color: 'rgb(56,70,82)'
+            }
+        },
+        splitLine: {
+            lineStyle: {
+                // 使用深浅的间隔色
+                color: ['#aaa', '#aaa'],
+                type :''
+            }
+        },
+
+    },
+    series: [{
+        name: '代理商卖出票量',
+        type: 'line',
+        lineStyle:{
+            width:2
+        },
+
+        data: [45, 51, 34, 39, 55, 62, 46]
+    }]
+};
+myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+	var myChart = echarts.init(document.getElementById('main2'));
+	var option = {
+    backgroundColor: '#F2F2F2',
+    title: {
+            text: '代理商买入情况折线图',
+            textStyle: {
+            color: 'rgb(56,70,82)'
+
+        	},
+            left:'center',
+            top:10,
+            fontsize:'48',
+            margin:40
+        },
+       dataZoom:[
+	    {   show:true,
+	        height:25,
+	        xAxisIndex: [0],
+	        bottom:25,
+	        type: 'slider',
+	        start: 1,
+	        end: 35,
+	        handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+	        handleSize:'110%',
+	        handleStyle: {
+	            color:'rgb(56,70,82)'
+	        }
+	     },
+	     {
+	         show:true,
+	         type: 'inside',
+	         height:15,
+	         start: 1,
+	         end:35
+	     }
+	    ],
+
+ // title:{
+ //         text:'航空公司售票变化图表',
+ //         margin:20,
+ //         top:10,
+ //         left:'center',
+ //         	textStyle: {
+	// 		color: '#fff',
+	// 		fontStyle: 'normal',
+	// 		fontFamily: '微软雅黑',
+	// 		fontSize: 20,
+	// 		margin:40,
+	// 	}
+
+
+
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['代理商买入票量'],
+        top: 'bottom',
+        textStyle: {
+            color: 'rgb(56,70,82)'
+        },
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+       
+        containLabel: true
+    },
+    toolbox: {
+    	
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['04/02', '04/03', '04/04', '04/05', '04/06', '04/07', '04/08'],
+        axisLine: {
+            lineStyle: {
+                color: 'rgb(56,70,82)'
+            }
+        }
+    },
+    yAxis: {
+        axisLine: {
+            lineStyle: {
+                color: 'rgb(56,70,82)'
+            }
+        },
+        splitLine: {
+            lineStyle: {
+                // 使用深浅的间隔色
+                color: ['#aaa', '#aaa'],
+                type :''
+            }
+        },
+
+    },
+    series: [{
+        name: '代理商买入票量',
+        type: 'line',
+        lineStyle:{
+            width:2
+        },
+
+        data: [45, 51, 34, 39, 55, 62, 46]
+    }]
+};
+myChart.setOption(option);
+</script>
+
+
+</section>
+</div>
+
+<!-- 关系图 -->
+
+
+
+
+
+
+			<!--开始::结束-->
+		</main>
+		<footer class="btm-ft">
+			<p class="clear">
+				<span class="fl">©Copyright 2017 <a href="#"  target="_blank">北京工业大学信息学部（原软件学院）</a></span>
+			</p>
+		</footer>
+	</div>
+</div>
+</body>
+</html>

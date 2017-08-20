@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.AgentMapper" >
+	<select id="agentWhole" resultType="com.pojo.Agent">
+    	select * from agent_whole order by sale_cnt desc
+  	</select>
+  	
+  	<select id="agentAllName" resultType="String">
+    	select proxy from agent_whole order by proxy
+  	</select>
+
+	<select id="agentSaleRelationship" parameterType="String" resultType="java.util.HashMap">
+  		select buy_nbr,cnt,round from sale_buy_relationship  where sale_nbr=#{agentname} order by cnt desc;
+  	</select>
+  	
+  	<select id="agentBuyRelationship" parameterType="String" resultType="java.util.HashMap">
+  		select sale_nbr,cnt,round from sale_buy_relationship  where buy_nbr=#{agentname} order by cnt desc;
+  	</select>
+  	
+  	<select id="agentDay" parameterType="String" resultType="java.util.HashMap">
+  		select day_id,sale_cnt,sale_round,buy_cnt,buy_round from agent_day where proxy=#{agentname} order by day_id;
+  	</select>
+  	
+  	<select id="dayAgent" parameterType="int" resultType="java.util.HashMap">
+  		select proxy,sale_cnt,sale_round,buy_cnt,buy_round from agent_day where day_id=#{day} order by sale_cnt desc;
+  	</select>
+  	
+  	<select id="saleCapability" parameterType="String" resultType="java.util.HashMap">
+  		select day_id,sale_cnt,buy_cnt,cnt_difference from agent_day where proxy=#{agentname} order by day_id;
+  	</select>
+  	<select id="fundCapability" parameterType="String" resultType="java.util.HashMap">
+  		select day_id,sale_round,buy_round,round_difference from agent_day where proxy=#{agentname} order by day_id;
+  	</select>
+  	
+  	<select id="agentActive"  resultType="java.util.HashMap">
+  		select agentname,active from agent_active order by agentname;
+  	</select>
+  	
+  	<select id="agentMarket"  parameterType="String" resultType="java.util.HashMap">
+  		select day_id,sale_cnt_persentage from agent_day where proxy=#{agentname} order by day_id;
+  	</select>
+  	
+  	<select id="agentSalePredict" parameterType="String"  resultType="java.util.HashMap">
+  		select day_id,cnt_sum,round_sum from predict_sale where sale_nbr=#{agentname} order by day_id;
+  	</select>
+  	
+  	<select id="agentBuyPredict" parameterType="String"  resultType="java.util.HashMap">
+  		select day_id,cnt_sum,round_sum from predict_buy where buy_nbr=#{agentname} order by day_id;
+  	</select>
+  	
+  	<select id="agentOriginal" parameterType="String"  resultType="java.util.HashMap">
+  		select day_id,sale_cnt,sale_round,buy_cnt,buy_round from agent_day where proxy=#{agentname} and day_id between 81 and 91  order by day_id;
+  	</select>
+</mapper>
