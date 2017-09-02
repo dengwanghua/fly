@@ -111,6 +111,7 @@ public class AgentController {
 					
 				}
 			}
+			
 			Map<String,Object> saletopfive=new HashMap<String,Object>();
 			saletopfive.put("value", 100-saleratesum);
 			saletopfive.put("name", "其它");

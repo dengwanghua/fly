@@ -57,7 +57,6 @@ public class UserController {
 				jsoninfo.setState("0");
 			}
 		}
-		//response.sendRedirect(jsoninfo.getUrl());
 		return jsoninfo;
 	}
 	@RequestMapping(value="/login.action",method=RequestMethod.POST)

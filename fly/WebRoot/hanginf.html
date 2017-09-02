@@ -26,131 +26,12 @@
 <!-- ／多选框 -->
 </head>
 <body>
-<div class="main-wrap">
-	<div class="side-nav">
-		<div class="side-logo">
-			<div class="logo">
-				<span class="logo-ico">
-					<i class="i-l-1"></i>
-					<i class="i-l-2"></i>
-					<i class="i-l-3"></i>
-				</span>
-				<strong>民航机票代理市场系统</strong>
-			</div>
-		</div>
-		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
-      <ul>
-      <li>
-        <dl>
-          <dt>
-            <i class="icon-dashboard"></i>销售基本信息<i class="icon-angle-right"></i>
-          </dt>
-          <dd>
-              <a href="hanginf.html">航空公司</a>
-          </dd>
-          <dd>
-              <a href="daiinf.html">代理人</a>
-          </dd>
-          </dl>
-        </li>
-        <li>
-          <dl>
-            <dt>
-              <i class="icon-columns"></i>销售关系<i class="icon-angle-right"></i>
-            </dt>
-            <dd>
-              <a href="flydiagram.html">航空公司</a>
-            </dd>
-            <dd>
-              <a href="peoplediagram.html">代理人</a>
-            </dd>
-          </dl>
-        </li>
-        <li>
-          <dl>
-            <dt>
-              <i class="icon-inbox"></i>销售趋势<i class="icon-angle-right"></i>
-            </dt>
-            <dd>
-              <a href="sumchange.html">总体销售趋势</a>
-            </dd>
-            <dd>
-              <a href="hangchange.html">航空公司</a>
-            </dd>
-            <dd>
-              <a href="daichange.html">代理人</a>
-            </dd>
-            
-          </dl>
-        </li>
-        <li>
-          <dl>
-            <dt>
-              <i class="icon-twitter"></i>每日销售情况<i class="icon-angle-right"></i>
-            </dt>
-            <dd>
-              <a href="everyhang.html">航空公司</a>
-            </dd>
-            <dd>
-              <a href="everydai.html">代理人</a>
-            </dd>
-            
-          </dl>
-        </li>
-        <li>
-          <dl>
-            <dt>
-              <i class="icon-book"></i>市场地位<i class="icon-angle-right"></i>
-            </dt>
-            <dd>
-              <a href="Sales_ability.html">销售能力</a>
-            </dd>
-            <dd>
-              <a href="Cash_flow_force.html">资金周转力</a>
-            </dd>
-            <dd>
-              <a href="active.html">活跃度</a>
-            </dd>
-            <dd>
-              <a href="The_market_share.html">市场占有量</a>
-            </dd>
-          </dl>
-        </li>
-        <li>
-          <dl>
-            <dt>
-              <i class="icon-star"></i>预测<i class="icon-angle-right"></i>
-            </dt>
-            <dd>
-              <a href="hangpredict.html">航空公司</a>
-            </dd>
-            <dd>
-              <a href="daipredict.html">代理人</a>
-            </dd>
-          </dl>
-        </li>
-        <li>
-          <dl>
-            <dt>
-              <i class="icon-user"></i>个人中心<i class="icon-angle-right"></i>
-            </dt>
-            <dd>
-              <a href="peocenter.html">个人基本信息</a>
-            </dd>
-            <dd>
-              <a href="changeps.html">密码修改</a>
-            </dd>
-            
-          </dl>
-        </li>
-      </ul> 
-    </nav>
-	</div>
-	<div class="content-wrap">
-		<header class="top-hd">
-			<div class="hd-lt">
-				<a class="icon-reorder"></a>
-			</div>
+<!-- <div class="main-wrap"> -->
+	
+		
+<main class="main-cont content mCustomScrollbar">
+<header class="top-hd">
+			
 			<div class="hd-rt">
 				<ul>
 					
@@ -159,14 +40,13 @@
 					</li>
 				</ul>
 			</div>
-		</header>
-<main class="main-cont content mCustomScrollbar">		
+		</header>		
 <div class="page-wrap">
 	<section class="page-hd">
 	<div class="box box1">
 		<div class="top-box"><i class="icon-trophy"></i>航空公司介绍</div>
 		<div class="main-box">
-    <div id="main33" style="width: 170px;height:170px;margin-left: 150px;margin-top: 10px;">
+    <div id="main33" style="width: 170px;height:170px;margin-left: 33%;margin-top: 10px;">
       
     </div>
 	<p style="text-align: center;">航空公司数量</p>
@@ -185,6 +65,10 @@
 				dataType:"json",
 				contentType:"application/json;charset=utf-8",
 				success:function(data){
+					if(!data.isLogin){
+						window.parent.location.href="login.html";
+						return;
+					}
 					var datainfo = JSON.parse(data.data);
 					resultlist=datainfo.infolist;
 					var myChart = echarts.init(document.getElementById('main33'));
@@ -231,6 +115,7 @@
 						          show: false,
 						          formatter: "{a} <br/>{b} : {c} ({d}%)"
 						      },
+						    
 						      legend: {
 						          show: false,
 						          itemGap: 12,
@@ -305,6 +190,7 @@
 						      ]
 						  };
 						  myChart.setOption(option);
+						  
 						  
 						  var myChart1 = echarts.init(document.getElementById('main22'));
 						  var data1=datainfo.topfive[0];
@@ -473,6 +359,12 @@
 					    ]
 					};
 					myChart2.setOption(option2);
+					window.onresize=function(){
+						myChart.resize();
+						myChart1.resize();
+						myChart2.resize();
+					}
+					
 				}
 				
 			});
@@ -548,7 +440,7 @@
 	</div>
 	<div class="box box2">
 		<div class="top-box">
-			<i class="icon-trophy"></i>售票售票前五的航空公司
+			<i class="icon-trophy"></i>售票前五的航空公司
 		</div>
 		<div class="main-box">
 			<div id="main22" style="width: 100%;height: 300px;"></div>

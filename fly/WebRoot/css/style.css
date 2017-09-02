@@ -1118,17 +1118,25 @@ a:active {
   z-index: 1;
   
 }
+
 .main-cont {
-  padding: 0 5px 0 235px;
+  padding: 0px;
+   margin-top:50px;
+  margin-bottom:60px;
   height: 100%;
+ 
+  
 }
 .main-cont1 {
-  padding: 0 70px 0 70px;
+  padding: 0px;
+  margin-top:50px;
+  margin-bottom:60px;
   height: 100%;
 }
 .page-wrap {
   background: rgb(240,243,246);
-  padding: 20px;
+  min-width:900px;
+ 
 }
 .page-wrap1 {
   background: white;
@@ -2240,13 +2248,15 @@ textarea:focus {
 
 
 .box1{
- height: 350px;
+  height: 350px;
   width: 44%;
+  min-width:400px;
   margin-top: 20px;
 }
 .box2{
  height: 350px;
   width: 43%;
+   min-width:400px;
   margin-top: 20px;
 }
 .box3{

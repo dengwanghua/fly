@@ -4,6 +4,7 @@ public class JsonInfo {
 	private String state;
 	private String data;
 	private String url;
+	private Boolean isLogin=true;
 	public String getState() {
 		return state;
 	}
@@ -21,6 +22,12 @@ public class JsonInfo {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public Boolean getIsLogin() {
+		return isLogin;
+	}
+	public void setIsLogin(Boolean isLogin) {
+		this.isLogin = isLogin;
 	}
 	
 }

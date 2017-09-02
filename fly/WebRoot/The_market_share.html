@@ -28,132 +28,10 @@
 
 </head>
 <body>
-<div class="main-wrap">
-	<div class="side-nav">
-		<div class="side-logo">
-			<div class="logo">
-				<span class="logo-ico">
-					<i class="i-l-1"></i>
-					<i class="i-l-2"></i>
-					<i class="i-l-3"></i>
-				</span>
-				<strong>民航机票代理市场系统</strong>
-			</div>
-		</div>
+
 		
-		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
-			<ul>
-			<li>
-				<dl>
-					<dt>
-						<i class="icon-dashboard"></i>销售基本信息<i class="icon-angle-right"></i>
-					</dt>
-					<dd>
-							<a href="hanginf.html">航空公司</a>
-					</dd>
-					<dd>
-							<a href="daiinf.html">代理人</a>
-					</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-columns"></i>销售关系<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="flydiagram.html">航空公司</a>
-						</dd>
-						<dd>
-							<a href="peoplediagram.html">代理人</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-inbox"></i>销售趋势<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="sumchange.html">总体销售</a>
-						</dd>
-						<dd>
-							<a href="hangchange.html">航空公司</a>
-						</dd>
-						<dd>
-							<a href="daichange.html">代理人</a>
-						</dd>
-						
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-twitter"></i>每日销售情况<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="everyhang.html">航空公司</a>
-						</dd>
-						<dd>
-							<a href="everydai.html">代理人</a>
-						</dd>
-						
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-book"></i>市场地位<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="Sales_ability.html">销售能力</a>
-						</dd>
-						<dd>
-							<a href="Cash_flow_force.html">资金周转力</a>
-						</dd>
-						<dd>
-							<a href="active.html">活跃度</a>
-						</dd>
-						<dd>
-							<a href="The_market_share.html">市场占有量</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-star"></i>预测<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="hangpredict.html">航空公司</a>
-						</dd>
-						<dd>
-							<a href="daipredict.html">代理人</a>
-						</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>
-							<i class="icon-user"></i>个人中心<i class="icon-angle-right"></i>
-						</dt>
-						<dd>
-							<a href="peocenter.html">个人基本信息</a>
-						</dd>
-						<dd>
-							<a href="changeps.html">密码修改</a>
-						</dd>
-						
-					</dl>
-				</li>
-			</ul>	
-		</nav>
-	</div>
-	<div class="content-wrap">
+		<main class="main-cont content mCustomScrollbar">
 		<header class="top-hd">
-			<div class="hd-lt">
-				<a class="icon-reorder"></a>
-			</div>
 			<div class="hd-rt">
 				<ul>
 					<li>
@@ -162,7 +40,6 @@
 				</ul>
 			</div>
 		</header>
-		<main class="main-cont content mCustomScrollbar">
 			<!--开始::内容-->
 			<div class="page-wrap">
 				<section class="page-hd">	
@@ -224,6 +101,10 @@
 			dataType:"json",
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			success:function(data){
+				if(!data.isLogin){
+					window.parent.location.href="login.html";
+					return;
+				}
 				var datainfo = JSON.parse(data.data);
 				$("#myselectfly").html("");
 				var flycontent="";
@@ -443,6 +324,11 @@
 		    ]
 		};
 		myChart1.setOption(option1);
+		window.onresize=function(){
+			myChart.resize();
+			myChart1.resize();
+			
+		}
 			}
 		});
 	}

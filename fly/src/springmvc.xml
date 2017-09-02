@@ -9,12 +9,14 @@
 
         <!-- 扫描@Controler  @Service   -->
         <context:component-scan base-package="com"/>
-        
+        <mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/**"/>
+				<mvc:exclude-mapping path="/register.action"/>
+				<mvc:exclude-mapping path="/login.action"/> 
+				<bean class="com.interceptor.LoginInterceptor"></bean>
+			</mvc:interceptor>
+		</mvc:interceptors>
         <!-- 注解驱动 -->
         <mvc:annotation-driven/>
-		  <!-- 视图解释器 -->
-        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        	<property name="prefix" value="/WEB-INF/jsp/"/>
-        	<property name="suffix" value=".jsp"/>
-        </bean>
    </beans>
